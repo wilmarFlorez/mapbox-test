@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import ReactMapGl, { Marker } from 'react-map-gl'
-import { FaMapMarkerAlt } from 'react-icons/fa'
+import ReactMapGl from 'react-map-gl'
+import MarkerPlace from '../MarkerPlace'
 import PoputBox from '../Popup'
 
 const mapBoxToken = process.env.REACT_APP_MAPBOX_TOKEN
@@ -41,18 +41,14 @@ const Map = ({ shops }) => {
 
   const setMarker = (shop) => {
     if (Object.keys(shop.properties).length) {
+      debugger
       return (
-        <Marker
+        <MarkerPlace
           key={shop.properties.id}
-          latitude={shop.geometry.coordinates[0]}
-          longitude={shop.geometry.coordinates[1]}
-        >
-          <FaMapMarkerAlt
-            style={{ color: 'tomato', cursor: 'pointer' }} size='22px'
-            onMouseEnter={(evt) => handleSelectedShop(shop)}
-            onMouseLeave={resetSelectedShop}
-          />
-        </Marker>
+          shop={shop}
+          onMouseEnter={() => handleSelectedShop(shop)}
+          onMouseLeave={resetSelectedShop}
+        />
       )
     }
   }
