@@ -41,7 +41,6 @@ const Map = ({ shops }) => {
 
   const setMarker = (shop) => {
     if (Object.keys(shop.properties).length) {
-      debugger
       return (
         <MarkerPlace
           key={shop.properties.id}
