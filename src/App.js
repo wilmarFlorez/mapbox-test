@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Map from './components/Map'
 import BarChart from './components/BarChart'
+import ListOfCards from './components/ListOfCards'
 
 export default function App() {
   const [shops, setShops] = useState([])
@@ -28,11 +29,12 @@ export default function App() {
   return (
     <>
       {/* <Map shops={shops} /> */}
-      <BarChart
+      {/* <BarChart
         color={color}
         width={width}
         height={height}
-      />
+      /> */}
+      <ListOfCards />
     </>
   )
 }
