@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Map from './components/Map'
 import BarChart from './components/BarChart'
 import ListOfCards from './components/ListOfCards'
+import Loader from './components/Loader'
 
 export default function App() {
   const [shops, setShops] = useState([])
@@ -22,8 +23,19 @@ export default function App() {
       })
   }, [])
 
-  if (!Object.keys(shops).length || loading) {
-    return 'Loading...'
+  const setMap = () => {
+    if (!Object.keys(shops).length || loading) {
+      return <Loader />
+    } else {
+      return (
+        <Map
+          title='Map View'
+          description='Here you can see the shops on the map view'
+          shops={shops}
+          className='mw-100'
+        />
+      )
+    }
   }
 
   return (
@@ -37,12 +49,7 @@ export default function App() {
       <div className='col-9 offset-3'>
         <div className='row p-2'>
           <div className='col-12  mh-50 mb-4'>
-            <Map
-              title='Map View'
-              description='Here you can see the shops on the map view'
-              shops={shops}
-              className='mw-100'
-            />
+            {setMap()}
           </div>
           <div className='col-12 mh-40'>
             <BarChart

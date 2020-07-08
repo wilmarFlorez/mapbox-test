@@ -11,7 +11,7 @@ const Map = ({ shops, title, description }) => {
     longitude: 4.737253893957665,
     width: '100%',
     height: '45vh',
-    zoom: 3
+    zoom: 1
   })
 
   const [selectedShop, setSelectedShop] = useState(null)

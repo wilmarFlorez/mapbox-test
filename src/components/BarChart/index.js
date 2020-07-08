@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import Loader from '../Loader'
 import {
   scaleLinear,
   select,
@@ -12,14 +13,17 @@ import './styles.css'
 
 const BarChart = (props) => {
   const { title, description } = props
+  const [loading, setLoading] = useState(false)
   const [shops, setShops] = useState([])
   const chartRef = useRef()
 
   useEffect(() => {
+    setLoading(true)
     window.fetch('https://alw-lab.herokuapp.com/commerces/graph')
       .then(res => res.json())
       .then(response => {
         setShops(response)
+        setLoading(false)
       })
   }, [])
 
@@ -28,7 +32,7 @@ const BarChart = (props) => {
     const accessToRef = select(chartRef.current)
     const xValue = shop => parseFloat(shop.sales)
     const yValue = shop => shop.name
-    const margin = { top: 20, right: 20, bottom: 20, left: 100 }
+    const margin = { top: 20, right: 20, bottom: 20, left: 80 }
     const innerWidth = width - margin.left - margin.right
     const innerHeight = height - margin.top - margin.bottom
 
@@ -57,21 +61,26 @@ const BarChart = (props) => {
       .attr('height', yScale.bandwidth())
   }
 
-  return (
-    <>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <svg
-        ref={chartRef}
-        width={props.width}
-        height={props.height}
-      />
-      {
-        shops.length > 0 &&
-        drawChart()
-      }
-    </>
-  )
+  const setBarChart = () => {
+    if (!shops.length > 0 || loading) {
+      return <Loader />
+    }
+
+    return (
+      <>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <svg
+          ref={chartRef}
+          width={props.width}
+          height={props.height}
+        />
+        {drawChart()}
+      </>
+    )
+  }
+
+  return (setBarChart())
 }
 
 export default BarChart
