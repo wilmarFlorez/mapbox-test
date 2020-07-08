@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Map from './components/Map'
 
-export default function App() {
+export default function App () {
   const [shops, setShops] = useState([])
   const [loading, setLoading] = useState(false)
 
