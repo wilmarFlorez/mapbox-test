@@ -5,12 +5,12 @@ import PoputBox from '../Popup'
 
 const mapBoxToken = process.env.REACT_APP_MAPBOX_TOKEN
 
-const Map = ({ shops }) => {
+const Map = ({ shops, title, description }) => {
   const [viewport, setViewport] = useState({
     latitude: -74.036865234375,
     longitude: 4.737253893957665,
-    width: '100wv',
-    height: '100vh',
+    width: '100%',
+    height: '45vh',
     zoom: 3
   })
 
@@ -30,11 +30,14 @@ const Map = ({ shops }) => {
       const { name, address } = selectedShop.properties
 
       return (
-        <PoputBox
-          coordinates={coordinates}
-          name={name}
-          address={address}
-        />
+        <div>
+
+          <PoputBox
+            coordinates={coordinates}
+            name={name}
+            address={address}
+          />
+        </div>
       )
     }
   }
@@ -53,21 +56,25 @@ const Map = ({ shops }) => {
   }
 
   return (
-    <ReactMapGl
-      {...viewport}
-      mapboxApiAccessToken={mapBoxToken}
-      mapStyle='mapbox://styles/wilmarflorez/ckcc53n1o6s9t1imnyaqaxrwq'
-      onViewportChange={(viewport) => {
-        setViewport(viewport)
-      }}
-    >
-      {
-        shops.features.map((shop) => (
-          setMarker(shop)
-        ))
-      }
-      {showPoput()}
-    </ReactMapGl>
+    <div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <ReactMapGl
+        {...viewport}
+        mapboxApiAccessToken={mapBoxToken}
+        mapStyle='mapbox://styles/wilmarflorez/ckcc53n1o6s9t1imnyaqaxrwq'
+        onViewportChange={(viewport) => {
+          setViewport(viewport)
+        }}
+      >
+        {
+          shops.features.map((shop) => (
+            setMarker(shop)
+          ))
+        }
+        {showPoput()}
+      </ReactMapGl>
+    </div>
   )
 }
 

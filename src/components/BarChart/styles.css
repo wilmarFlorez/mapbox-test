@@ -1,7 +1,8 @@
 rect {
-  fill: steelblue;
+  fill: #A64170;
 }
 
 text {
   font-size: 1.2em;
+  color: #ffffff;
 }

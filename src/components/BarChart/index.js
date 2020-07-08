@@ -11,6 +11,7 @@ import {
 import './styles.css'
 
 const BarChart = (props) => {
+  const { title, description } = props
   const [shops, setShops] = useState([])
   const chartRef = useRef()
 
@@ -23,7 +24,7 @@ const BarChart = (props) => {
   }, [])
 
   const drawChart = () => {
-    const { width, height, color } = props
+    const { width, height } = props
     const accessToRef = select(chartRef.current)
     const xValue = shop => parseFloat(shop.sales)
     const yValue = shop => shop.name
@@ -58,6 +59,8 @@ const BarChart = (props) => {
 
   return (
     <>
+      <h3>{title}</h3>
+      <p>{description}</p>
       <svg
         ref={chartRef}
         width={props.width}

@@ -1,0 +1,10 @@
+.list {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: #171A26;
+}
+
+.list .headerList {
+  padding: .5em;
+}

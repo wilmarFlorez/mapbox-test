@@ -9,7 +9,7 @@ export default function App() {
 
   // BarChart contants
   const width = 900
-  const height = 400
+  const height = 200
   const color = 'tomato'
 
   useEffect(() => {
@@ -27,14 +27,34 @@ export default function App() {
   }
 
   return (
-    <>
-      {/* <Map shops={shops} /> */}
-      {/* <BarChart
-        color={color}
-        width={width}
-        height={height}
-      /> */}
-      <ListOfCards />
-    </>
+    <div className='row'>
+      <div className='col-3 position-fixed'>
+        <ListOfCards
+          title='Card View'
+          description='Here you can see the shops on the card view'
+        />
+      </div>
+      <div className='col-9 offset-3'>
+        <div className='row p-2'>
+          <div className='col-12  mh-50 mb-4'>
+            <Map
+              title='Map View'
+              description='Here you can see the shops on the map view'
+              shops={shops}
+              className='mw-100'
+            />
+          </div>
+          <div className='col-12 mh-40'>
+            <BarChart
+              title='Sales view'
+              description='Here you can see the sales'
+              color={color}
+              width={width}
+              height={height}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

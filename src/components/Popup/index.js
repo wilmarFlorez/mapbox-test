@@ -1,5 +1,6 @@
 import React from 'react'
 import { Popup } from 'react-map-gl'
+import './styles.css'
 
 const PopupBox = (props) => {
   console.log('props', props)
@@ -12,7 +13,7 @@ const PopupBox = (props) => {
       latitude={latitude}
       longitude={longitude}
     >
-      <div>
+      <div className='contentPopup'>
         <h3>{name}</h3>
         <span>{address}</span>
       </div>

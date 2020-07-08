@@ -13,8 +13,8 @@ const Card = (data) => {
   } = data
 
   return (
-    <div className='card'>
-      <div className="card-body">
+    <div className='card custome mb-2'>
+      <div className='card-body'>
         <h5>Name: {name}</h5>
         <h6>Nit: {nit}</h6>
         <div>Address: {address}</div>
