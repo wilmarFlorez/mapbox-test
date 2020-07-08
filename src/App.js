@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Map from './components/Map'
+import BarChart from './components/BarChart'
 
-export default function App () {
+export default function App() {
   const [shops, setShops] = useState([])
   const [loading, setLoading] = useState(false)
+
+  // BarChart contants
+  const width = 900
+  const height = 400
+  const color = 'tomato'
 
   useEffect(() => {
     setLoading(true)
@@ -21,7 +27,12 @@ export default function App () {
 
   return (
     <>
-      <Map shops={shops} />
+      {/* <Map shops={shops} /> */}
+      <BarChart
+        color={color}
+        width={width}
+        height={height}
+      />
     </>
   )
 }
